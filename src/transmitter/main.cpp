@@ -2,10 +2,9 @@
 #include "test_ping.h"
 
 bool testPingsEnabled = false;
-bool randomTestPingsEnabled = false;
+bool randomTestPingsEnabled = true;
 
 void setup() {
-    Serial.begin(115200);
     initStatusTransmitter();
     initPingSender();
 }
