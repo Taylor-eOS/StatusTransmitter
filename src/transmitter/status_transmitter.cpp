@@ -5,7 +5,7 @@
 #define LED_PIN 8
 
 uint8_t receiverMAC[] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
-esp_now_peer_info_t peerInfo;
+esp_now_peer_info_t peerInfoSt;
 
 void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) {
     Serial.print("Status send: ");
@@ -23,20 +23,21 @@ void initStatusTransmitter() {
         return;
     }
     esp_now_register_send_cb(OnDataSent);
-    memcpy(peerInfo.peer_addr, receiverMAC, 6);
-    peerInfo.channel = 1;
-    peerInfo.encrypt = false;
-    if (esp_now_add_peer(&peerInfo) != ESP_OK) {
+    memcpy(peerInfoSt.peer_addr, receiverMAC, 6);
+    peerInfoSt.channel = 1;
+    peerInfoSt.encrypt = false;
+    if (esp_now_add_peer(&peerInfoSt) != ESP_OK) {
         Serial.println("Failed to add peer");
         return;
     }
+    delay(2000);
     Serial.println("Status transmitter ready");
 }
 
 void sendStatusMessage(String message) {
     uint8_t messageData[250];
     int msgLen = min((int)message.length(), 249);
-    memcpy(messageData, message.c_str(), msgLen);
+    strncpy((char*)messageData, message.c_str(), msgLen);
     messageData[msgLen] = '\0';
     digitalWrite(LED_PIN, LOW);
     esp_now_send(receiverMAC, messageData, msgLen + 1);
