@@ -35,9 +35,11 @@ void initStatusTransmitter() {
 }
 
 void sendStatusMessage(String message) {
+    unsigned long t = millis();
+    String msgWithTime = String(t) + " " + message;
     uint8_t messageData[250];
-    int msgLen = min((int)message.length(), 249);
-    strncpy((char*)messageData, message.c_str(), msgLen);
+    int msgLen = min((int)msgWithTime.length(), 249);
+    strncpy((char*)messageData, msgWithTime.c_str(), msgLen);
     messageData[msgLen] = '\0';
     digitalWrite(LED_PIN, LOW);
     esp_now_send(receiverMAC, messageData, msgLen + 1);
