@@ -1,0 +1,22 @@
+{
+    "name": "StatusTransmitter",
+    "version": "1.0.0",
+    "description": "ESP-NOW string transmission to serial if a cable connection is not possible",
+    "keywords": ["ESP32", "ESP-NOW"],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Taylor-eOS/StatusTransmitter.git"
+    },
+    "authors": [
+        {
+            "name": "Taylor-eOS",
+            "url": "https://github.com/Taylor-eOS"
+        }
+    ],
+    "homepage": "https://github.com/Taylor-eOS/StatusTransmitter",
+    "frameworks": ["arduino"],
+    "platforms": ["espressif32"],
+    "dependencies": {},
+    "examples": ["examples/*"]
+}
+
