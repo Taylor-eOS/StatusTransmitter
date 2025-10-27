@@ -1,5 +1,5 @@
 #include "test_ping.h"
-#include "status_transmitter.h"
+#include "StatusTransmitter.h"
 
 static const unsigned long PING_INTERVAL_MS = 3000;
 
