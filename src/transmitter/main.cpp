@@ -1,4 +1,4 @@
-#include "status_transmitter.h"
+#include "StatusTransmitter.h"
 #include "test_ping.h"
 
 bool testPingsEnabled = false;
